@@ -1,0 +1,28 @@
+Hi, thank you for downloading this theme.
+
+Benny is a responsive and multipurpose theme for Osclass-powered classifieds websites.
+It is based on Bender so it follows Osclass coding standard and inherits Bender's ease of use.
+
+Using the theme is easy:
+- Download from respoclass.com or from osclass market at market.osclass.org
+- Go to admin panel -> Appearance -> Manage themes
+- Upload the theme
+- Activate
+
+To check how it looks on different screens/gadgets, go to responsinator.com, type your site URL
+or the demo site: demo.respoclass.com
+
+If you like this theme, please consider making donation so that I can create more themes and 
+release them for free.
+
+This theme can be used either for personal or commercial use.
+
+If you have any questions or find bugs, please drop a line to responia@gmail.com.
+
+Looking for other Osclass themes? Visit http://respoclass.com 
+
+
+Best regards,
+
+Adi
+http://respoclass.com

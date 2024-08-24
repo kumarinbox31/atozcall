@@ -1,0 +1,17 @@
+[May 14, 2015] version 1.0.3
+- fix error
+- remove unnecessary function 
+[May 6, 2015] version 1.0.2
+- change version number following Osclass standard: from 2 digits to 3 digits
+- fix function names
+- add description that the theme is based on Bender  
+[April 29, 2015] version 1.1
+- add readme.txt
+- add changelog.txt
+- add font awesome icons 
+- at homepage, categories and subcategories without listing remain grey, 
+  categories and subcategories with listing will be highlighted   
+- change some wording on header 
+- clean up files
+
+[April 27, 2015] Initial release
