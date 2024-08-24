@@ -3,13 +3,16 @@
 define('DB_HOST', 'localhost');
 
 // MySql database username
-define('DB_USER', 'a2zwebfire_main');
+// define('DB_USER', 'a2zwebfire_main');
+define('DB_USER', 'root');
 
 // MySql database password
-define('DB_PASSWORD', ']eZ=fU6Cm$-Q');
+// define('DB_PASSWORD', ']eZ=fU6Cm$-Q');
+define('DB_PASSWORD', '');
 
 // MySql database name
-define('DB_NAME', 'a2zwebfire_main');
+// define('DB_NAME', 'a2zwebfire_main');
+define('DB_NAME', 'atozcall');
 
 // MySql database table prefix
 define('DB_TABLE_PREFIX', 'oc_');
@@ -18,7 +21,8 @@ define('DB_TABLE_PREFIX', 'oc_');
 define('REL_WEB_URL', '/');
 
 // Web address - modify here for SSL version of site
-define('WEB_PATH', 'https://a2z.webfire.site/');
+// define('WEB_PATH', 'https://a2z.webfire.site/');
+define('WEB_PATH', 'http://localhost/atozcall/');
 
 
 // *************************************** //
@@ -26,7 +30,7 @@ define('WEB_PATH', 'https://a2z.webfire.site/');
 // *************************************** //
 
 // Enable debugging
-// define('OSC_DEBUG', true);             // show PHP error logs and notices
+define('OSC_DEBUG', true);             // show PHP error logs and notices
 // define('OSC_DEBUG_DB', true);          // show DB queries
 // define('OSC_DEBUG_LOG', true);         // save PHP errors & logs to oc-content/debug.log
 // define('OSC_DEBUG_DB_LOG', true);      // save DB logs into oc-content/queries.log
