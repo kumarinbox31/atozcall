@@ -3,16 +3,16 @@
 define('DB_HOST', 'localhost');
 
 // MySql database username
-// define('DB_USER', 'a2zwebfire_main');
-define('DB_USER', 'root');
+define('DB_USER', 'a2zwebfire_main');
+// define('DB_USER', 'root');
 
 // MySql database password
-// define('DB_PASSWORD', ']eZ=fU6Cm$-Q');
-define('DB_PASSWORD', '');
+define('DB_PASSWORD', ']eZ=fU6Cm$-Q');
+// define('DB_PASSWORD', '');
 
 // MySql database name
-// define('DB_NAME', 'a2zwebfire_main');
-define('DB_NAME', 'atozcall');
+define('DB_NAME', 'a2zwebfire_main');
+// define('DB_NAME', 'atozcall');
 
 // MySql database table prefix
 define('DB_TABLE_PREFIX', 'oc_');
@@ -21,8 +21,8 @@ define('DB_TABLE_PREFIX', 'oc_');
 define('REL_WEB_URL', '/');
 
 // Web address - modify here for SSL version of site
-// define('WEB_PATH', 'https://a2z.webfire.site/');
-define('WEB_PATH', 'http://localhost/atozcall/');
+define('WEB_PATH', 'https://a2z.webfire.site/');
+// define('WEB_PATH', 'http://localhost/atozcall/');
 
 
 // *************************************** //
