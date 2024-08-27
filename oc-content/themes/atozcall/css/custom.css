@@ -271,3 +271,6 @@ div.meta { margin-bottom: 18px; zoom: 1; }
 li.level-1{
     padding-left: 15px!important;
 }
+.header-icons>li>a{
+    color:white;
+}

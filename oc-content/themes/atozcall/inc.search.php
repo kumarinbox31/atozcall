@@ -6,7 +6,7 @@
                         <input type="hidden" name="page" value="search" />
                         <div class="row">
                             <div class="form-group col-md-4">
-                            <input class="xlarge" type="text" name="sPattern" value="" plaseholder="Search">
+                            <input class="xlarge" type="text" name="sPattern" value="" placeholder="Search">
                             </div>
                             <?php chosen_select_standard() ; ?>
                             <?php chosen_region_select() ; ?>

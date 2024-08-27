@@ -7,11 +7,74 @@
                 <!-- Desktop | Responsive Top-bar -->
                 <div class="row">
                     <div class="large-12 columns">
-                        <marquee>
-                            <div class="marq"><span>COD Available on Minimum Order of ₹499 /-</span> <span>
-                                    Limited Time Only</span> <span> Our Exclusive Deals!</span> <span>Hurry,
-                                    Grab Yours Now!</span> <span>Explore Our Premium Offers Now!</span></div>
-                        </marquee>
+                        <!-- Group icon header -->
+                        <div class="order-3 icons-wrapper">
+                                    <div class="nasa-header-icons-wrap">
+                                        <ul class="header-icons">
+                                            <li>
+                                                <?php if (osc_users_enabled()) { ?>
+                                                    <?php if (osc_is_web_user_logged_in()) { ?>
+                                                        <?php printf(__('Hi %s', 'twitter'), osc_logged_user_name() . '!'); ?>
+                                                        &middot;
+                                                        <a
+                                                            href="<?php echo osc_user_dashboard_url(); ?>"><?php _e('My account', 'twitter'); ?></a>
+                                                        &middot;
+                                                        <a
+                                                            href="<?php echo osc_user_logout_url(); ?>"><?php _e('Logout', 'twitter'); ?></a>
+                                                    <?php } else { ?>
+                                                        <a
+                                                            href="<?php echo osc_user_login_url(); ?>"><?php _e('Login', 'twitter'); ?></a>
+                                                        &middot;
+                                                        <a
+                                                            href="<?php echo osc_register_account_url(); ?>"><?php _e('Register', 'twitter'); ?></a>
+                                                    <?php } ?>
+                                                <?php } ?>
+                                            </li>
+                                            <?php if (osc_count_web_enabled_locales() > 1) { ?>
+                                                <?php osc_goto_first_locale(); ?>
+                                                <li class="languages">
+                                                    &middot;
+                                                    <a class="active" href="#"><?php _e('Language', 'twitter'); ?>
+                                                        <?php while (osc_has_web_enabled_locales()) {
+                                                            if (osc_locale_code() == osc_current_user_locale()) { ?>(<?php echo osc_locale_field('s_short_name'); ?>)<?php }
+                                                        } ?></a>
+                                                    <ul>
+                                                        <?php $i = 0; ?>
+                                                        <?php osc_goto_first_locale(); ?>
+                                                        <?php while (osc_has_web_enabled_locales()) { ?>
+                                                            <li <?php if ($i == 0) {
+                                                                echo "class='first'";
+                                                            } ?>><a
+                                                                    id="<?php echo osc_locale_code(); ?>"
+                                                                    href="<?php echo osc_change_language_url(osc_locale_code()); ?>"><?php echo osc_locale_field('s_short_name'); ?></a>
+                                                            </li>
+                                                            <?php $i++;
+                                                        } ?>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        <?php } ?>
+                                        <?/* <ul class="header-icons">
+                                            <li class="first nasa-icon-account-mobile menus-account"><a
+                                                    class="nasa-login-register-ajax nasa-flex" data-enable="1"
+                                                    href="my-account/index.html" title="Login / Register"><i
+                                                        class="nasa-icon pe7-icon pe-7s-user"></i></a></li>
+                                            <li class="nasa-icon-mini-cart"><a href="shopping-cart/index.html"
+                                                    class="cart-link mini-cart cart-inner nasa-flex jc"
+                                                    title="Cart" rel="nofollow"><span class="icon-wrap"><i
+                                                            class="nasa-icon cart-icon icon-nasa-cart-3"></i><span
+                                                            class="nasa-cart-count nasa-mini-number cart-number hidden-tag nasa-product-empty">0</span></span><span
+                                                        class="icon-text hidden-tag">Cart</span></a></li>
+                                            <li class="nasa-icon-search nasa-hide-for-mobile"><a
+                                                    class="search-icon desk-search nasa-flex"
+                                                    href="javascript:void(0);" data-open="0" title="Search"
+                                                    rel="nofollow"><i
+                                                        class="nasa-icon nasa-search icon-nasa-if-search"></i></a>
+                                            </li>
+                                        </ul> */ ?>
+                                    </div>
+                                </div>
+
 
                         <style>
                             .marq {
@@ -83,74 +146,7 @@ text-align: center;
                                         <?php } ?>
                                 </div>
 
-                                <!-- Group icon header -->
-                                <div class="order-3 icons-wrapper">
-                                    <div class="nasa-header-icons-wrap">
-                                        <ul class="header-icons">
-                                            <li>
-                                                <?php if (osc_users_enabled()) { ?>
-                                                    <?php if (osc_is_web_user_logged_in()) { ?>
-                                                        <?php printf(__('Hi %s', 'twitter'), osc_logged_user_name() . '!'); ?>
-                                                        &middot;
-                                                        <a
-                                                            href="<?php echo osc_user_dashboard_url(); ?>"><?php _e('My account', 'twitter'); ?></a>
-                                                        &middot;
-                                                        <a
-                                                            href="<?php echo osc_user_logout_url(); ?>"><?php _e('Logout', 'twitter'); ?></a>
-                                                    <?php } else { ?>
-                                                        <a
-                                                            href="<?php echo osc_user_login_url(); ?>"><?php _e('Login', 'twitter'); ?></a>
-                                                        &middot;
-                                                        <a
-                                                            href="<?php echo osc_register_account_url(); ?>"><?php _e('Register', 'twitter'); ?></a>
-                                                    <?php } ?>
-                                                <?php } ?>
-                                            </li>
-                                            <?php if (osc_count_web_enabled_locales() > 1) { ?>
-                                                <?php osc_goto_first_locale(); ?>
-                                                <li class="languages">
-                                                    &middot;
-                                                    <a class="active" href="#"><?php _e('Language', 'twitter'); ?>
-                                                        <?php while (osc_has_web_enabled_locales()) {
-                                                            if (osc_locale_code() == osc_current_user_locale()) { ?>(<?php echo osc_locale_field('s_short_name'); ?>)<?php }
-                                                        } ?></a>
-                                                    <ul>
-                                                        <?php $i = 0; ?>
-                                                        <?php osc_goto_first_locale(); ?>
-                                                        <?php while (osc_has_web_enabled_locales()) { ?>
-                                                            <li <?php if ($i == 0) {
-                                                                echo "class='first'";
-                                                            } ?>><a
-                                                                    id="<?php echo osc_locale_code(); ?>"
-                                                                    href="<?php echo osc_change_language_url(osc_locale_code()); ?>"><?php echo osc_locale_field('s_short_name'); ?></a>
-                                                            </li>
-                                                            <?php $i++;
-                                                        } ?>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        <?php } ?>
-                                        <?/* <ul class="header-icons">
-                                            <li class="first nasa-icon-account-mobile menus-account"><a
-                                                    class="nasa-login-register-ajax nasa-flex" data-enable="1"
-                                                    href="my-account/index.html" title="Login / Register"><i
-                                                        class="nasa-icon pe7-icon pe-7s-user"></i></a></li>
-                                            <li class="nasa-icon-mini-cart"><a href="shopping-cart/index.html"
-                                                    class="cart-link mini-cart cart-inner nasa-flex jc"
-                                                    title="Cart" rel="nofollow"><span class="icon-wrap"><i
-                                                            class="nasa-icon cart-icon icon-nasa-cart-3"></i><span
-                                                            class="nasa-cart-count nasa-mini-number cart-number hidden-tag nasa-product-empty">0</span></span><span
-                                                        class="icon-text hidden-tag">Cart</span></a></li>
-                                            <li class="nasa-icon-search nasa-hide-for-mobile"><a
-                                                    class="search-icon desk-search nasa-flex"
-                                                    href="javascript:void(0);" data-open="0" title="Search"
-                                                    rel="nofollow"><i
-                                                        class="nasa-icon nasa-search icon-nasa-if-search"></i></a>
-                                            </li>
-                                        </ul> */ ?>
-                                    </div>
-                                </div>
-
+                                
                                 <!-- Main menu -->
                                 <div class="wide-nav fgr-2 order-2 fjct nasa-bg-wrap nasa-nav-style-1">
                                     <div class="nasa-menus-wrapper nasa-menus-wrapper-reponsive nasa-loading"

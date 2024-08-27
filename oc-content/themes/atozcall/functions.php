@@ -5,7 +5,7 @@ function chosen_select_standard() {
 
   if( osc_count_categories() > 0 ) {
     echo '<select name="sCategory" data-placeholder="' . __('Select a category...', 'twitter') . '" style="width: auto;" class="chosen-select">' ;
-    echo '<option></option>' ;
+    echo '<option>Select Category</option>' ;
     while( osc_has_categories() ) {
       echo '<option value="' . osc_category_id() . '">' . osc_category_name() . '</option>' ;
       if( osc_count_subcategories() > 0 ) {
@@ -46,7 +46,7 @@ function chosen_region_select() {
 
   if( osc_count_list_regions() > 0 ) {
     echo '<select class="form-control" name="sRegion" data-placeholder="' . __('Select a region...', 'twitter') . '" style="width: 200px;" class="chosen-select">' ;
-    echo '<option></option>' ;
+    echo '<option>Select Region</option>' ;
     while( osc_has_list_regions() ) {
       echo '<option value="' . osc_list_region_name() . '">' . osc_list_region_name() . '</option>' ;
     }
