@@ -41,19 +41,155 @@
         <meta name="robots" content="index, follow" />
         <meta name="googlebot" content="index, follow" />
         <?php } ?>
+        <style>
+    .details-snippet1 {
+        color: #585656;
+    }
+
+    /* Main text uses this styling and color */
+    .details-snippet1 .theme-text {
+        color: purple;
+        font-weight: bold;
+    }
+
+    .details-snippet1 .mini-preview img {
+        border: 1px solid #585656;
+        border: 1px solid purple;
+        margin-bottom: 8px;
+    }
+
+    .details-snippet1 .title {
+        color: #464343;
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+    .details-snippet1 .price {
+        font-weight: bold;
+        font-size: 1.8rem;
+    }
+
+    .details-snippet1 .original-price {
+        font-weight: normal;
+        font-size: 20px;
+    }
+
+    .brief-description {
+        /* color: #585656; */
+        color: #464343;
+    }
+
+
+    .select-colors .color {
+        display: inline-block;
+        border: 1px solid grey;
+        height: 35px;
+        width: 35px;
+        border-radius: 50%;
+        margin-right: 5px;
+        background-color: black;
+    }
+
+    .select-colors .color.red {
+        background-color: red;
+    }
+
+    .select-colors .color.silver {
+        background-color: silver;
+    }
+
+    .select-colors .color.black {
+        background-color: black;
+    }
+
+
+
+    .addBtn {
+        background-color: purple;
+        color: white;
+        text-transform: uppercase;
+    }
+
+    .addBtn:hover {
+        background-color: #500150;
+        color: white;
+    }
+
+
+    .related-heading {
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        /* color: #464343; */
+    }
+
+    .details-snippet1 .related-title {
+        color: #464343;
+        font-weight: bold;
+    }
+
+    .details-snippet1 .related-price {
+        color: #464343;
+        font-weight: bold;
+    }
+
+
+
+    .additional-details .nav-link {
+        border: none;
+        color: #464343;
+    }
+
+    .additional-details .nav-link.active {
+        background-color: white;
+        color: #464343;
+        border: none;
+        border-bottom: 4px solid purple;
+    }
+            </style>
+            
     </head>
     <body>
         <?php osc_current_web_theme_path('header.php') ; ?>
         <div class="container margin-top-10">
             <?php twitter_show_flash_message() ; ?>
         </div>
-        <div class="container item-detail">
-            <?php echo twitter_breadcrumb('&raquo;') ; ?>
+
+
+        <div class="container my-5">
+        <?php echo twitter_breadcrumb('&raquo;') ; ?>
+    <div class="row details-snippet1 mt-2">
+        <div class="col-md-7">
             <div class="row">
-                <!-- item detail -->
-                <div class="span16 columns">
-                    <div id="item_head">
-                        <h1><?php if( osc_price_enabled_at_items() ) { ?><small><?php echo osc_item_formated_price() ; ?></small> &middot; <?php } ?><?php echo osc_item_title(); ?></h1>
+            <?php if( osc_images_enabled_at_items() && (osc_count_item_resources() > 0) ) { ?>
+    <div class="col-md-2 mini-preview">
+    <?php 
+        $firstImageUrl = ''; // Initialize a variable to store the first image URL
+        $firstImageSet = false; // A flag to check if the first image is set
+
+        while( osc_has_item_resources() ) { 
+            $imageUrl = osc_resource_thumbnail_url(); // Get the current image URL
+            if (!$firstImageSet) {
+                $firstImageUrl = $imageUrl; // Store the first image URL
+                $firstImageSet = true; // Set the flag to true
+            }
+            ?>
+            <img class="img-fluid" onclick="setProductImage(this.src)" src="<?php echo $imageUrl; ?>" width="150" alt="<?php echo osc_item_title() ; ?>" title="<?php echo osc_item_title() ; ?>"/>
+        <?php } ?>
+    </div>
+    <div class="col-md-10">
+        <div class="product-image">
+            <img id="product-main-image" class="img-fluid" src="<?php echo $firstImageUrl; ?>" alt="Main Image">
+        </div>
+    </div>
+<?php } ?>
+
+                
+            </div>
+
+        </div>
+        <div class="col-md-5">
+            <div class="category">
+            <div id="item_head">
                         <?php if(osc_is_web_user_logged_in() && osc_logged_user_id()==osc_item_user_id()) { ?>
                             <p id="edit_item_view">
                                 <strong>
@@ -73,49 +209,45 @@
                             </p>
                         <?php }; ?>
                     </div>
-
-                    <p class="no-margin"><?php printf(__('<strong>Published date:</strong> %s %s', 'twitter'), osc_format_date( osc_item_pub_date() ), date(osc_time_format(), strtotime(osc_item_pub_date())) ) ; ?></p>
+            </div>
+            <div class="title"><?php if( osc_price_enabled_at_items() ) { ?><small><?php echo osc_item_formated_price() ; ?></small> &middot; <?php } ?><?php echo osc_item_title(); ?></div>
+            <p class="no-margin"><?php printf(__('<strong class="theme-text">Published date:</strong> %s %s', 'twitter'), osc_format_date( osc_item_pub_date() ), date(osc_time_format(), strtotime(osc_item_pub_date())) ) ; ?></p>
                     <?php if ( osc_item_mod_date() != '' ) { ?>
-                    <p class="no-margin"><?php printf(__('<strong>Modified date:</strong> %s %s', 'twitter'), osc_format_date( osc_item_mod_date() ), date(osc_time_format(), strtotime(osc_item_mod_date())) ) ; ?></p>
+                    <p class="no-margin"><?php printf(__('<strong class="theme-text">Modified date:</strong> %s %s', 'twitter'), osc_format_date( osc_item_mod_date() ), date(osc_time_format(), strtotime(osc_item_mod_date())) ) ; ?></p>
                     <?php } ?>
                     <?php $item_location = item_detail_location() ; ?>
                     <?php if( count($item_location) > 0 ) { ?>
-                    <p class="no-margin"><?php printf(__('<strong>Location:</strong> %s', 'twitter'), implode(', ', $item_location) ) ; ?></p>
+                    <p class="no-margin"><?php printf(__('<strong class="theme-text">Location:</strong> %s', 'twitter'), implode(', ', $item_location) ) ; ?></p>
                     <?php } ?>
-                    <p class="margin-top-10"><?php echo osc_item_description() ; ?></p>
+            <div class="theme-text subtitle">Brief Description:</div>
+            <p class="margin-top-10"><?php echo osc_item_description() ; ?></p>
                     <div class="custom_fields">
                         <?php if( osc_count_item_meta() > 0 ) { ?>
                         <div class="meta_list">
                             <?php while ( osc_has_item_meta() ) { ?>
                             <p class="meta no-margin">
-                                <strong><?php echo osc_item_meta_name() ; ?>:</strong> <?php echo osc_item_meta_value() ; ?>
+                                <strong class="theme-text"><?php echo osc_item_meta_name() ; ?>:</strong> <?php echo osc_item_meta_value() ; ?>
                             </p>
                             <?php } ?>
                         </div>
                         <?php } ?>
                     </div>
-                    <?php osc_run_hook('item_detail', osc_item() ) ; ?>
-                    <?php if( osc_images_enabled_at_items() && (osc_count_item_resources() > 0) ) { ?>
-                    <div class="photos">
-                        <ul class="media-grid">
-                        <?php while( osc_has_item_resources() ) { ?>
-                            <li>
-                                <a rel="image_group" href="<?php echo osc_resource_url(); ?>"><img src="<?php echo osc_resource_thumbnail_url(); ?>" width="150" alt="<?php echo osc_item_title() ; ?>" title="<?php echo osc_item_title() ; ?>"/></a>
-                            </li>
-                        <?php } ?>
-                        </ul>
-                    </div>
-                    <?php } ?>
-                    <p>
-                        <?php if ( !$is_expired && $is_user && $is_can_contact ) { ?>
-                        <a class="btn primary item-contact-button" data-controls-modal="item-contact" data-backdrop="true" data-keyboard="true" href="javascript://"><?php _e('Contact seller', 'twitter') ; ?></a>
-                        <?php } ?>
-                        <a class="btn primary item-share-button" data-controls-modal="item-sendfriend" data-backdrop="true" data-keyboard="true" href="javascript://"><?php _e('Share', 'twitter') ; ?></a>
-                    </p>
+
+                <hr>
+                <p>
+    <?php if (!$is_expired && $is_user && $is_can_contact) { ?>
+    <a class="btn btn-primary item-contact-button" data-bs-toggle="modal" data-bs-target="#item-contact"><?php _e('Contact seller', 'twitter'); ?></a>
+    <?php } ?>
+    <a class="btn btn-primary item-share-button" data-bs-toggle="modal" data-bs-target="#item-sendfriend"><?php _e('Share', 'twitter'); ?></a>
+</p>
+
                     <?php osc_run_hook('location') ; ?>
-                </div>
-                <!-- item detail end -->
-                <?php if( $is_comments_enabled ) { ?>
+
+        </div>
+    </div>
+
+<div class="col-md-12">
+<?php if( $is_comments_enabled ) { ?>
                 <!-- comments -->
                 <div class="span16 columns comments well">
                     <?php if( $is_can_comment && (osc_item_total_comments() > 0) ) { ?>
@@ -175,7 +307,7 @@
                                 </div>
                             </div>
                             <div class="actions">
-                                <button class="btn" type="submit"><?php _e('Post comment', 'twitter') ; ?></button>
+                                <button class="btn mt-2" type="submit"><?php _e('Post comment', 'twitter') ; ?></button>
                             </div>
                         </fieldset>
                     </form>
@@ -183,120 +315,139 @@
                 </div>
                 <!-- comments end -->
                 <?php } ?>
+</div>
+
+<div class="col-md-12">
+<?php if (!$is_expired && $is_user && $is_can_contact) { ?>
+    <!-- item contact -->
+    <div class="modal fade" id="item-contact" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form <?php if (osc_item_attachment()) { ?>enctype="multipart/form-data"<?php } ?> class="form-stacked" action="<?php echo osc_base_url(true); ?>" method="post" name="contact_form" id="contact_form" onsubmit="return doItemContact();">
+                    <input type="hidden" name="action" value="contact_post" />
+                    <input type="hidden" name="page" value="item" />
+                    <input type="hidden" name="id" value="<?php echo osc_item_id(); ?>" />
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="contactModalLabel"><?php _e('Contact publisher', 'twitter'); ?></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <?php osc_prepare_user_info(); ?>
+                        <div class="mb-3">
+                            <label for="contact-yourName" class="form-label"><?php _e('Your name', 'twitter'); ?></label>
+                            <input class="form-control" id="contact-yourName" name="yourName" type="text" value="<?php echo osc_logged_user_name(); ?>">
+                        </div>
+                        <div class="mb-3">
+                            <label for="contact-yourEmail" class="form-label"><?php _e('Your e-mail', 'twitter'); ?></label>
+                            <input class="form-control" id="contact-yourEmail" name="yourEmail" type="text" value="<?php echo osc_logged_user_email(); ?>">
+                        </div>
+                        <div class="mb-3">
+                            <label for="contact-phoneNumber" class="form-label"><?php _e('Phone number', 'twitter'); ?></label>
+                            <input class="form-control" id="contact-phoneNumber" name="phoneNumber" type="text" value="">
+                        </div>
+                        <?php if (osc_item_attachment()) { ?>
+                        <div class="mb-3">
+                            <label for="contact-attachment" class="form-label"><?php _e('Attachments', 'twitter'); ?></label>
+                            <?php ContactForm::your_attachment(); ?>
+                        </div>
+                        <?php } ?>
+                        <div class="mb-3">
+                            <label for="contact-message" class="form-label"><?php _e('Message', 'twitter'); ?></label>
+                            <textarea class="form-control" id="contact-message" name="message" rows="6"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <div class="recaptcha_container">
+                                <?php osc_show_recaptcha(); ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" type="submit"><?php _e('Send', 'twitter'); ?></button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php _e('Cancel', 'twitter'); ?></button>
+                    </div>
+                </form>
             </div>
         </div>
-        <?php if ( !$is_expired && $is_user && $is_can_contact ) { ?>
-        <!-- item contact -->
-        <div id="item-contact" class="modal hide item-contact">
-            <form <?php if( osc_item_attachment() ) { ?>enctype="multipart/form-data"<?php } ?> class="form-stacked" action="<?php echo osc_base_url(true) ; ?>" method="post" name="contact_form" id="contact_form" onsubmit="return doItemContact() ;">
-                <input type="hidden" name="action" value="contact_post" />
-                <input type="hidden" name="page" value="item" />
-                <input type="hidden" name="id" value="<?php echo osc_item_id() ; ?>" />
-                <div class="modal-header">
-                    <a href="#" class="close">×</a>
-                    <h3><?php _e('Contact publisher', 'twitter') ; ?></h3>
-                </div>
-                <div class="modal-body">
-                    <?php osc_prepare_user_info() ; ?>
-                    <div class="clearfix">
-                        <label for="contact-yourName"><?php _e('Your name', 'twitter') ; ?></label>
-                        <div class="input">
-                            <input class="xlarge contact-yourName" id="contact-yourName" name="yourName" type="text" value="<?php echo osc_logged_user_name(); ?>">
-                        </div>
-                    </div>
-                    <div class="clearfix">
-                        <label for="contact-yourEmail"><?php _e('Your e-mail', 'twitter') ; ?></label>
-                        <div class="input">
-                            <input class="xlarge contact-yourEmail" id="contact-yourEmail" name="yourEmail" type="text" value="<?php echo osc_logged_user_email();?>">
-                        </div>
-                    </div>
-                    <div class="clearfix">
-                        <label for="contact-phoneNumber"><?php _e('Phone number', 'twitter') ; ?></label>
-                        <div class="input">
-                            <input class="xlarge contact-phoneNumber" id="contact-phoneNumber" name="phoneNumber" type="text" value="">
-                        </div>
-                    </div>
-                    <?php if( osc_item_attachment() ) { ?>
-                    <div class="clearfix">
-                        <label for="contact-attachment"><?php _e('Attachments', 'twitter') ; ?></label>
-                        <div class="input">
-                            <?php ContactForm::your_attachment() ; ?>
-                        </div>
-                    </div>
-                    <?php } ?>
-                    <div class="clearfix">
-                        <label for="contact-message"><?php _e('Message', 'twitter') ; ?></label>
-                        <div class="input">
-                            <textarea class="xlarge contact-message" id="contact-message" name="message" rows="6"></textarea>
-                        </div>
-                    </div>
-                    <div class="clearfix">
-                        <div class="recaptcha_container">
-                            <?php osc_show_recaptcha(); ?>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn primary" type="submit"><?php _e('Send', 'twitter') ; ?></button>
-                    <a class="btn item-contact-button-cancel" href="javascript://"><?php _e('Cancel', 'twitter') ; ?></a>
-                </div>
-            </form>
-        </div>
-        <!-- item contact end -->
-        <?php } ?>
+    </div>
+    <!-- item contact end -->
+<?php } ?>
+
         <!-- item send friend -->
-        <div id="item-sendfriend" class="modal hide item-sendfriend">
-            <form class="form-stacked" action="<?php echo osc_base_url(true) ; ?>" method="post" name="sendfriend" onsubmit="return doItemSendFriend() ;">
+        <div class="modal fade" id="item-sendfriend" tabindex="-1" aria-labelledby="sendFriendModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="<?php echo osc_base_url(true); ?>" method="post" name="sendfriend" onsubmit="return doItemSendFriend();">
                 <input type="hidden" name="action" value="send_friend_post" />
                 <input type="hidden" name="page" value="item" />
-                <input type="hidden" name="id" value="<?php echo osc_item_id() ; ?>" />
+                <input type="hidden" name="id" value="<?php echo osc_item_id(); ?>" />
                 <div class="modal-header">
-                    <a href="#" class="close">×</a>
-                    <h3><?php _e('Send to a friend', 'twitter') ; ?></h3>
+                    <h5 class="modal-title" id="sendFriendModalLabel"><?php _e('Send to a friend', 'twitter'); ?></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="clearfix">
-                        <label for="sendfriend-yourName"><?php _e('Your name', 'twitter') ; ?></label>
-                        <div class="input">
-                            <input class="xlarge sendfriend-yourName" id="sendfriend-yourName" name="yourName" type="text" value="">
-                        </div>
+                    <div class="mb-3">
+                        <label for="sendfriend-yourName" class="form-label"><?php _e('Your name', 'twitter'); ?></label>
+                        <input class="form-control" id="sendfriend-yourName" name="yourName" type="text" value="">
                     </div>
-                    <div class="clearfix">
-                        <label for="sendfriend-friendName"><?php _e('Your e-mail', 'twitter') ; ?></label>
-                        <div class="input">
-                            <input class="xlarge sendfriend-yourEmail" id="sendfriend-yourEmail" name="yourEmail" type="text" value="">
-                        </div>
+                    <div class="mb-3">
+                        <label for="sendfriend-yourEmail" class="form-label"><?php _e('Your e-mail', 'twitter'); ?></label>
+                        <input class="form-control" id="sendfriend-yourEmail" name="yourEmail" type="text" value="">
                     </div>
-                    <div class="clearfix">
-                        <label for="sendfriend-friendName"><?php _e("Your friend's name", 'twitter') ; ?></label>
-                        <div class="input">
-                            <input class="xlarge sendfriend-friendName" id="sendfriend-friendName" name="friendName" type="text" value="">
-                        </div>
+                    <div class="mb-3">
+                        <label for="sendfriend-friendName" class="form-label"><?php _e("Your friend's name", 'twitter'); ?></label>
+                        <input class="form-control" id="sendfriend-friendName" name="friendName" type="text" value="">
                     </div>
-                    <div class="clearfix">
-                        <label for="sendfriend-friendEmail"><?php _e("Your friend's e-mail", 'twitter') ; ?></label>
-                        <div class="input">
-                            <input class="xlarge sendfriend-friendEmail" id="sendfriend-friendEmail" name="friendEmail" type="text" value="">
-                        </div>
+                    <div class="mb-3">
+                        <label for="sendfriend-friendEmail" class="form-label"><?php _e("Your friend's e-mail", 'twitter'); ?></label>
+                        <input class="form-control" id="sendfriend-friendEmail" name="friendEmail" type="text" value="">
                     </div>
-                    <div class="clearfix">
-                        <label for="sendfriend-message"><?php _e('Message', 'twitter') ; ?></label>
-                        <div class="input">
-                            <textarea class="xlarge sendfriend-message" id="sendfriend-message" name="message" rows="6"></textarea>
-                        </div>
+                    <div class="mb-3">
+                        <label for="sendfriend-message" class="form-label"><?php _e('Message', 'twitter'); ?></label>
+                        <textarea class="form-control" id="sendfriend-message" name="message" rows="6"></textarea>
                     </div>
-                    <div class="clearfix">
+                    <div class="mb-3">
                         <div class="recaptcha_container">
                             <?php osc_show_recaptcha(); ?>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn primary" type="submit"><?php _e('Send', 'twitter') ; ?></button>
-                    <a class="btn item-sendfriend-button-cancel" href="javascript://"><?php _e('Cancel', 'twitter') ; ?></a>
+                    <button class="btn btn-primary" type="submit"><?php _e('Send', 'twitter'); ?></button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php _e('Cancel', 'twitter'); ?></button>
                 </div>
             </form>
         </div>
+    </div>
+</div>
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
         <!-- item send friend end -->
         <script type="text/javascript">
             var text_error_required = '' ;
@@ -306,5 +457,10 @@
         <script type="text/javascript" src="<?php echo osc_current_web_theme_js_url('item_sendfriend.js') ; ?>"></script>
         <script type="text/javascript" src="<?php echo osc_current_web_theme_js_url('item_comment.js') ; ?>"></script>
         <?php osc_current_web_theme_path('footer.php') ; ?>
+        <script>
+function setProductImage(src) {
+        document.getElementById('product-main-image').src = src;
+    }
+                </script>
     </body>
 </html>

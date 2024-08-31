@@ -15,7 +15,8 @@
         <?php twitter_show_flash_message(); ?>
     </div>
     <!-- content -->
-    <div class="container container-fluid latest_ads row">
+    <div class="container container-fluid latest_ads">
+        <div class="row">
         <div class="sidebar col-md-4">
             <div class="row">
                 <div class="span4 columns">
@@ -58,7 +59,7 @@
                 </p>
             <?php } else { ?>
                 <?php while (osc_has_latest_items()) { ?>
-                    <div class="product-warp-item columns nasa-large-5-col-1 medium-4 small-6 nasa-modern-6">
+                    <div class="product-warp-item columns large-4 medium-4 small-6 nasa-modern-6">
                         <div
                             class="product type-product post-<?php echo osc_item_id(); ?> status-publish instock product-item grid hover-left-to-right has-add">
                             <div class="product-img-wrap">
@@ -76,7 +77,7 @@
                                     </a>
                                 </div>
 
-                                <a class="product-img" href="<?php echo osc_item_url(); ?>">
+                                <a class="" href="<?php echo osc_item_url(); ?>">
                                     <div class="main-img">
                                         <?php if (osc_count_item_resources()) { ?>
                                             <img width="450" height="450" src="<?php echo osc_resource_thumbnail_url(); ?>"
@@ -121,10 +122,10 @@
                                 }
                                 ?>
 
-                                <p><?php echo osc_highlight(strip_tags(osc_item_description())); ?></p>
+                                <!-- <p><?php echo osc_highlight(strip_tags(osc_item_description())); ?></p> -->
 
-                                <a href="?add-to-cart=<?php echo osc_item_id(); ?>" data-quantity="1"
-                                    class="button add-to-cart">Add to Cart</a>
+                                <a href="index.php?page=item&id=<?php echo osc_item_id(); ?>" data-quantity="1"
+                                    class="button add-to-cart">View More</a>
                             </div>
                         </div>
                     </div>
@@ -139,6 +140,7 @@
                     </div>
                 <?php } ?>
             <?php } ?>
+        </div>
         </div>
     </div>
     <?php osc_current_web_theme_path('footer.php'); ?>
