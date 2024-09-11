@@ -2,7 +2,7 @@
 <!-- MAIN FOOTER -->
 <footer id="nasa-footer" class="footer-wrapper nasa-clear-both">
             <div data-elementor-type="wp-post" data-elementor-id="3697" class="elementor elementor-3697">
-                <section
+                <!-- <section
                     class="elementor-section elementor-top-section elementor-element elementor-element-7c04ebd elementor-section-boxed elementor-section-height-default elementor-section-height-default"
                     data-id="7c04ebd" data-element_type="section"
                     data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
@@ -593,8 +593,9 @@
                             </div>
                         </div>
                     </div>
-                </section>
+                </section> -->
                 <section
+                style="background-color: #09552d;color:white"
                     class="elementor-section elementor-top-section elementor-element elementor-element-c7c9482 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
                     data-id="c7c9482" data-element_type="section"
                     data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
@@ -602,7 +603,7 @@
                         <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-6b58226"
                             data-id="6b58226" data-element_type="column"
                             data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-                            <div class="elementor-widget-wrap elementor-element-populated">
+                            <div class="elementor-widget-wrap elementor-element-populated text-center">
                                 <div class="elementor-element elementor-element-3521153 elementor-widget elementor-widget-text-editor"
                                     data-id="3521153" data-element_type="widget" data-widget_type="text-editor.default">
                                     <div class="elementor-widget-container">
